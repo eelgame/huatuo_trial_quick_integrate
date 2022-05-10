@@ -1,0 +1,10 @@
+﻿
+
+<linker>
+
+	<assembly fullname="Assembly-CSharp-firstpass">
+	    <type fullname="Performance" preserve="all"/>
+		
+	</assembly>
+
+</linker>

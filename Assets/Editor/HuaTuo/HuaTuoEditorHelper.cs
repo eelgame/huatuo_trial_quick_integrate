@@ -11,7 +11,7 @@ namespace HuaTuo
     /// </summary>
     public class HuaTuoEditorHelper
     {
-        public static string DllBuildOutputDir => Path.GetFullPath($"{Application.dataPath}/../Temp/HuaTuo/build");
+        public static string DllBuildOutputDir => Path.GetFullPath($"{Application.streamingAssetsPath}");
 
 
         public static string AssetBundleOutputDir => Application.dataPath + "/HuaTuo/Output";
@@ -36,7 +36,8 @@ namespace HuaTuo
 
         public static string GetDllBuildOutputDirByTarget(BuildTarget target)
         {
-            return $"{DllBuildOutputDir}/{target}";
+            // return $"{DllBuildOutputDir}/{target}";
+            return $"{DllBuildOutputDir}";
         }
 
         [MenuItem("HuaTuo/CompileDll/ActiveBuildTarget")]
