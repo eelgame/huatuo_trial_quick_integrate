@@ -1,6 +1,6 @@
-[submodule "huatuo"]
-	path = UnityData/huatuo
-	url = https://github.com/focus-creative-games/huatuo.git
-[submodule "il2cpp"]
+[submodule "UnityData/il2cpp"]
 	path = UnityData/il2cpp
 	url = https://github.com/pirunxi/il2cpp_huatuo.git
+[submodule "UnityData/huatuo"]
+	path = UnityData/huatuo
+	url = https://github.com/focus-creative-games/huatuo.git
