@@ -13,11 +13,11 @@ namespace HotFix_Project
             sw.Start();
             float total = Mandelbrot(64, 64, 4);
             sw.Stop();
-            sb.AppendLine(string.Format("res=" + total + ", time:{0:0}", sw.ElapsedMilliseconds));
+            sb.AppendLine(string.Format("res=" + total + ", time:{0:0}", sw.ElapsedTicks));
             sw.Restart();
             total = Mandelbrot2(64, 64, 4);
             sw.Stop();
-            sb.AppendLine(string.Format("res2=" + total + ", time:{0:0}", sw.ElapsedMilliseconds));
+            sb.AppendLine(string.Format("res2=" + total + ", time:{0:0}", sw.ElapsedTicks));
         }
 
         static bool MandelbrotCheck(float workX, float workY)
@@ -135,7 +135,7 @@ namespace HotFix_Project
 
             GameObject.Destroy(go);
             sw.Stop();
-            sb.AppendLine("time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("time:" + sw.ElapsedTicks);
         }
 
         public static void Test1(StringBuilder sb)
@@ -153,7 +153,7 @@ namespace HotFix_Project
 
             GameObject.Destroy(go);
             sw.Stop();
-            sb.AppendLine("time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("time:" + sw.ElapsedTicks);
         }
 
         public static void Test2(StringBuilder sb)
@@ -170,7 +170,7 @@ namespace HotFix_Project
             }
 
             sw.Stop();
-            sb.AppendLine("time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("time:" + sw.ElapsedTicks);
         }
 
         public static void Test3(StringBuilder sb)
@@ -185,7 +185,7 @@ namespace HotFix_Project
             }
 
             sw.Stop();
-            sb.AppendLine("time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("time:" + sw.ElapsedTicks);
         }
 
         public static void Test4(StringBuilder sb)
@@ -203,7 +203,7 @@ namespace HotFix_Project
             }
 
             sw.Stop();
-            sb.AppendLine("time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("time:" + sw.ElapsedTicks);
         }
 
         public static void Test5(StringBuilder sb)
@@ -217,7 +217,7 @@ namespace HotFix_Project
             }
 
             sw.Stop();
-            sb.AppendLine("time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("time:" + sw.ElapsedTicks);
         }
 
         public static void Test6(StringBuilder sb)
@@ -232,7 +232,7 @@ namespace HotFix_Project
             }
 
             sw.Stop();
-            sb.AppendLine("time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("time:" + sw.ElapsedTicks);
         }
 
         public static void Test7(StringBuilder sb)
@@ -248,7 +248,7 @@ namespace HotFix_Project
             }
 
             sw.Stop();
-            sb.AppendLine("time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("time:" + sw.ElapsedTicks);
         }
 
         public static void Test8(StringBuilder sb)
@@ -263,7 +263,7 @@ namespace HotFix_Project
             }
 
             sw.Stop();
-            sb.AppendLine("res=" + total + ",time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("res=" + total + ",time:" + sw.ElapsedTicks);
         }
 
         public static void Test9(StringBuilder sb)
@@ -285,7 +285,7 @@ namespace HotFix_Project
                 }
             }
             sw.Stop();
-            sb.AppendLine("res=" + total + ",time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("res=" + total + ",time:" + sw.ElapsedTicks);
         }
 
         public static void Test10(StringBuilder sb)
@@ -301,7 +301,7 @@ namespace HotFix_Project
             }
             GameObject.Destroy(go);
             sw.Stop();
-            sb.AppendLine("time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("time:" + sw.ElapsedTicks);
         }
 
         static void c(Vector3 o, Vector3 x)
@@ -321,7 +321,7 @@ namespace HotFix_Project
             }
 
             sw.Stop();
-            sb.AppendLine("time:" + sw.ElapsedMilliseconds);
+            sb.AppendLine("time:" + sw.ElapsedTicks);
         }
     }
 

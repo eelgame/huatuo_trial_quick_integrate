@@ -21,8 +21,6 @@ public class PerformanceMono : MonoBehaviour
 
     private readonly List<string> _tests = new List<string>();
     private AppDomain _appdomain;
-    private Assembly _assembly;
-    
 
     private void Awake()
     {
@@ -45,8 +43,8 @@ public class PerformanceMono : MonoBehaviour
     private IEnumerator Start()
     {
         yield return LoadHotFixAssembly();
-        
-        _assembly = Assembly.Load(File.ReadAllBytes(Path.Combine(Application.streamingAssetsPath, "Assembly-CSharp.dll")));
+        var assembly = Assembly.Load("Assembly-CSharp.dll");
+        var huatuoAssembly = Assembly.Load(File.ReadAllBytes(Path.Combine(Application.streamingAssetsPath, "Assembly-CSharp.dll")));
         
         string luaStr = @"require 'performance'";
         _luaenv.DoString(luaStr);
@@ -54,23 +52,35 @@ public class PerformanceMono : MonoBehaviour
         foreach (var testName in _tests)
         {
             Log($"================{testName}================");
-            var sb = new StringBuilder();
-            sb.AppendLine("xlua:");
-            var perf = _luaenv.Global.GetInPath<LuaCallPerfCase>(testName);
-            perf(sb);
-            Log(sb);
-            sb = new StringBuilder();
-            sb.AppendLine("ilruntime:");
-            _appdomain.Invoke("HotFix_Project.TestPerformance", testName, null, sb);
-            Log(sb);
+            // var sb = new StringBuilder();
+            // sb.AppendLine("xlua:");
+            // var perf = _luaenv.Global.GetInPath<LuaCallPerfCase>(testName);
+            // perf(sb);
+            // Log(sb);
+            // sb = new StringBuilder();
+            // sb.AppendLine("ilruntime:");
+            // _appdomain.Invoke("HotFix_Project.TestPerformance", testName, null, sb);
+            // Log(sb);
+
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine("huatuo:");
+                var type = huatuoAssembly.GetType("HotFix_Project.TestPerformance");
+                var m = type.GetMethod(testName);
+                Debug.Assert(m != null);
+                m.Invoke(null, new object[] {sb});
+                Log(sb);
+            }
             
-            sb = new StringBuilder();
-            sb.AppendLine("huatuo:");
-            var type = _assembly.GetType("HotFix_Project.TestPerformance");
-            var m = type.GetMethod(testName);
-            Debug.Assert(m != null);
-            m.Invoke(null, new object[] {sb});
-            Log(sb);
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine("il2cpp:");
+                var type = assembly.GetType("HotFix_Project.TestPerformance");
+                var m = type.GetMethod(testName);
+                Debug.Assert(m != null);
+                m.Invoke(null, new object[] {sb});
+                Log(sb);
+            }
         }
     }
 
